@@ -1,5 +1,8 @@
 import pygame
 
+# Наследуем методы от родительского класса pygame.sprite.Sprite
+
+
 class Bullet(pygame.sprite.Sprite):
 
     def __init__(self, screen, gun):
@@ -17,7 +20,6 @@ class Bullet(pygame.sprite.Sprite):
         self.rect.top = gun.rect.top
         self.y = self.rect.y
 
-
     def update(self):
         """
         Update y position buller
@@ -25,7 +27,6 @@ class Bullet(pygame.sprite.Sprite):
         """
         self.y -= self.speed
         self.rect.y = self.y
-
 
     def draw(self):
         pygame.draw.rect(self.screen, self.color, self.rect)

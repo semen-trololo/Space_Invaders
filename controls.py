@@ -1,6 +1,7 @@
 import pygame
 from bullet import Bullet
 
+
 def events(screen, gun, bullets):
     for event in pygame.event.get():
         # проверить закрытие окна
@@ -12,6 +13,7 @@ def events(screen, gun, bullets):
             elif event.key == pygame.K_LEFT:
                 gun.key_l = True
             elif event.key == pygame.K_SPACE:
+                # Создаем обьекты пули и добовляем его в список
                 new_bullet = Bullet(screen, gun)
                 bullets.add(new_bullet)
         elif event.type == pygame.KEYUP:
@@ -24,6 +26,7 @@ def events(screen, gun, bullets):
 
 def update_screen(bg_collor, screen, gun, bullets):
     screen.fill(bg_collor)
+    # Отрисовываем все спрайты пуль
     for bullet in bullets.sprites():
         bullet.draw()
     gun.draw()
