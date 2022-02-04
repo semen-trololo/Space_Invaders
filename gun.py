@@ -9,6 +9,9 @@ class Gun():
         self.screen_rect = screen.get_rect()
         self.rect.centerx = self.screen_rect.centerx
         self.rect.bottom = self.screen_rect.bottom
+        # Флаг нажатия клавиши для движения пушки
+        self.key_r = False
+        self.key_l = False
 
     def draw(self):
         """
@@ -16,3 +19,13 @@ class Gun():
         :return: None
         """
         self.screen.blit(self.image, self.rect)
+
+    def update(self):
+        """
+        Update x,y gun
+        :return: None
+        """
+        if self.key_r:
+            self.rect.centerx += 1
+        if self.key_l:
+            self.rect.centerx -= 1
