@@ -22,10 +22,10 @@ class Gun():
 
     def update(self):
         """
-        Update x,y gun
+        Update x position gun
         :return: None
         """
-        if self.key_r:
+        if self.key_r and self.rect.right < self.screen_rect.right:
             self.rect.centerx += 1
-        if self.key_l:
+        if self.key_l and self.rect.left > self.screen_rect.left:
             self.rect.centerx -= 1

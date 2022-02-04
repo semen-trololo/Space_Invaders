@@ -1,6 +1,7 @@
 import pygame
 import controls
 from gun import Gun
+from pygame.sprite import Group
 
 WIDTH = 800  # ширина игрового окна
 HEIGHT = 600 # высота игрового окна
@@ -16,14 +17,13 @@ def run():
 
 def game_loop(screen):
     gun = Gun(screen)
+    bullets = Group()
     running = True
     while running:
-        running = controls.events(gun)
+        running = controls.events(screen, gun, bullets)
         gun.update()
-        screen.fill(BLACK)
-        gun.draw()
-        # после отрисовки всего, переворачиваем экран
-        pygame.display.flip()
+        bullets.update()
+        controls.update_screen(BLACK, screen, gun, bullets)
 
 
 run()
