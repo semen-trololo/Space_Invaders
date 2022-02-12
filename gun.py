@@ -30,3 +30,7 @@ class Gun:
             self.rect.centerx += 1
         if self.key_l and self.rect.left > self.screen_rect.left:
             self.rect.centerx -= 1
+
+    def gun_reset(self):
+        self.rect.centerx = self.screen_rect.centerx
+        self.rect.bottom = self.screen_rect.bottom
