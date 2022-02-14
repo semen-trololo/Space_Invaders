@@ -76,14 +76,17 @@ def collisions(screen, bullets, inos, gun, stats):
         stats.round += 1
         stats.image_round()
         stats.show_round()
+        stats.show_stats()
+        gun.gun_reset()
+        gun.draw()
         pygame.display.flip()
         time.sleep(2)
         pygame.event.clear()
+        gun.key_r = False
+        gun.key_l = False
         bullets.empty()
         creat_ufos(screen, inos)
         inos.draw(screen)
-        gun.gun_reset()
-        gun.draw()
         pygame.display.flip()
         return False
     if pygame.sprite.spritecollideany(gun, inos):
@@ -122,18 +125,23 @@ def gun_kill(stats, screen, gun, inos, bullets):
         pygame.display.flip()
         time.sleep(3)
         pygame.event.clear()
+        gun.key_r = False
+        gun.key_l = False
         stats.run_game = False
     else:
         stats.round += 1
         stats.image_round()
         stats.show_round()
+        stats.show_stats()
+        gun.gun_reset()
+        gun.draw()
         pygame.display.flip()
         time.sleep(2)
         pygame.event.clear()
+        gun.key_r = False
+        gun.key_l = False
         bullets.empty()
         inos.empty()
         creat_ufos(screen, inos)
-        gun.gun_reset()
         inos.draw(screen)
-        gun.draw()
         pygame.display.flip()
