@@ -15,7 +15,7 @@ class Ufo(pygame.sprite.Sprite):
         self.rect.y = self.rect.height
         self.y = float(self.rect.y)
         self.x = float(self.rect.x)
-        self.speed = 0.1
+        self.speed = 0.08
 
     def draw(self):
         self.screen.blit(self.image, self.rect)

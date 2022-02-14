@@ -1,3 +1,5 @@
+import time
+
 import pygame
 import controls
 from gun import Gun
@@ -23,8 +25,12 @@ def game_loop(screen):
     # pygame.sprite.Group()
     bullets = Group()
     inos = Group()
+    screen.fill(BLACK)
+    start_stats.image_round()
+    start_stats.show_round()
+    pygame.display.flip()
+    time.sleep(2)
     controls.creat_ufos(screen, inos)
-    running = True
     while True:
         if start_stats.run_game == False:
             return True

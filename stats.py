@@ -5,6 +5,7 @@ class Stats():
     """Stats games"""
 
     def __init__(self, screen):
+        self.round = 1
         self.healf = 3
         self.run_game = True
         self.score = 0
@@ -37,6 +38,12 @@ class Stats():
         self.game_over_rect = self.img_game_over.get_rect()
         self.game_over_rect.center = self.screen_rect.center
 
+    def image_round(self):
+        self.font = pygame.font.Font('image/font.ttf', 60)
+        self.text_collor = 255, 193, 7
+        self.img_round = self.font.render(f' ROUND {self.round} ', True, self.text_collor, (255, 0, 0))
+        self.roud_rect = self.img_round.get_rect()
+        self.roud_rect.center = self.screen_rect.center
 
     def show_stats(self):
         self.screen.blit(self.img_score, self.scor_rect)
@@ -44,3 +51,6 @@ class Stats():
 
     def show_game_over(self):
         self.screen.blit(self.img_game_over, self.game_over_rect)
+
+    def show_round(self):
+        self.screen.blit(self.img_round, self.roud_rect)

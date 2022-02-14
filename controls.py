@@ -73,13 +73,17 @@ def collisions(screen, bullets, inos, gun, stats):
             stats.score += 2 * len(y)
         stats.image_score()
     if len(inos) == 0:
+        stats.round += 1
+        stats.image_round()
+        stats.show_round()
+        pygame.display.flip()
+        time.sleep(2)
         bullets.empty()
         creat_ufos(screen, inos)
         inos.draw(screen)
         gun.gun_reset()
         gun.draw()
         pygame.display.flip()
-        time.sleep(1)
     if pygame.sprite.spritecollideany(gun, inos):
         return True
     screen_rect = screen.get_rect()
