@@ -1,5 +1,6 @@
 import random
 import pygame
+import sys
 from bullet import Bullet
 from ufo import Ufo
 import time
@@ -9,7 +10,7 @@ def events(screen, gun, bullets):
     for event in pygame.event.get():
         # проверить закрытие окна
         if event.type == pygame.QUIT:
-            return False
+            sys.exit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
                 gun.key_r = True
@@ -24,13 +25,12 @@ def events(screen, gun, bullets):
                 gun.key_r = False
             elif event.key == pygame.K_LEFT:
                 gun.key_l = False
-    return True
 
 
 def update_screen(bg_collor, screen, gun, bullets, inos, stats):
     screen.fill(bg_collor)
     stats.show_stats()
-    if collisions(screen, bullets, inos, gun,stats):
+    if collisions(screen, bullets, inos, gun, stats):
         gun_kill(stats, screen, gun, inos, bullets)
     # Отрисовываем все спрайты пуль
     for bullet in bullets.sprites():
@@ -73,12 +73,13 @@ def collisions(screen, bullets, inos, gun, stats):
             stats.score += 2 * len(y)
         stats.image_score()
     if len(inos) == 0:
+        bullets.empty()
         creat_ufos(screen, inos)
         inos.draw(screen)
         gun.gun_reset()
         gun.draw()
         pygame.display.flip()
-        time.sleep(2)
+        time.sleep(1)
     if pygame.sprite.spritecollideany(gun, inos):
         return True
     screen_rect = screen.get_rect()
@@ -107,6 +108,13 @@ def gun_kill(stats, screen, gun, inos, bullets):
     stats.healf -= 1
     stats.image_half()
     if stats.healf == 0:
+        bullets.empty()
+        inos.empty()
+        gun.gun_reset()
+        gun.draw()
+        stats.show_game_over()
+        pygame.display.flip()
+        time.sleep(3)
         stats.run_game = False
     else:
         bullets.empty()
@@ -116,4 +124,4 @@ def gun_kill(stats, screen, gun, inos, bullets):
         inos.draw(screen)
         gun.draw()
         pygame.display.flip()
-        time.sleep(2)
+        time.sleep(1)
