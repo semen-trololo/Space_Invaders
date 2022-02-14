@@ -28,6 +28,7 @@ def game_loop(screen):
     screen.fill(BLACK)
     start_stats.image_round()
     start_stats.show_round()
+    gun.draw()
     pygame.display.flip()
     time.sleep(2)
     pygame.event.clear()
