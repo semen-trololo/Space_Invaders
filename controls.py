@@ -78,12 +78,14 @@ def collisions(screen, bullets, inos, gun, stats):
         stats.show_round()
         pygame.display.flip()
         time.sleep(2)
+        pygame.event.clear()
         bullets.empty()
         creat_ufos(screen, inos)
         inos.draw(screen)
         gun.gun_reset()
         gun.draw()
         pygame.display.flip()
+        return False
     if pygame.sprite.spritecollideany(gun, inos):
         return True
     screen_rect = screen.get_rect()
@@ -119,8 +121,15 @@ def gun_kill(stats, screen, gun, inos, bullets):
         stats.show_game_over()
         pygame.display.flip()
         time.sleep(3)
+        pygame.event.clear()
         stats.run_game = False
     else:
+        stats.round += 1
+        stats.image_round()
+        stats.show_round()
+        pygame.display.flip()
+        time.sleep(2)
+        pygame.event.clear()
         bullets.empty()
         inos.empty()
         creat_ufos(screen, inos)
@@ -128,4 +137,3 @@ def gun_kill(stats, screen, gun, inos, bullets):
         inos.draw(screen)
         gun.draw()
         pygame.display.flip()
-        time.sleep(1)

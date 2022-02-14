@@ -9,6 +9,7 @@ class Gun:
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
         self.rect.centerx = self.screen_rect.centerx
+        self.center_float = float(self.screen_rect.centerx)
         self.rect.bottom = self.screen_rect.bottom
         # Флаг нажатия клавиши для движения пушки
         self.key_r = False
@@ -27,10 +28,11 @@ class Gun:
         :return: None
         """
         if self.key_r and self.rect.right < self.screen_rect.right:
-            self.rect.centerx += 1
+            self.center_float += 0.5
         if self.key_l and self.rect.left > self.screen_rect.left:
-            self.rect.centerx -= 1
-
+            self.center_float -= 0.5
+        self.rect.centerx = self.center_float
     def gun_reset(self):
         self.rect.centerx = self.screen_rect.centerx
+        self.center_float = float(self.screen_rect.centerx)
         self.rect.bottom = self.screen_rect.bottom

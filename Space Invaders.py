@@ -30,6 +30,7 @@ def game_loop(screen):
     start_stats.show_round()
     pygame.display.flip()
     time.sleep(2)
+    pygame.event.clear()
     controls.creat_ufos(screen, inos)
     while True:
         if start_stats.run_game == False:
